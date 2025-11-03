@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grid Cycle Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  <link rel="stylesheet" href="./assets/css/admin.css" />
+  <link rel="icon" href="assets/img/favico.ico" />
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X1TZL7DBJV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-X1TZL7DBJV');
+</script>
+</head>
+
+<body>
+  <!-- Login Page -->
+  <div class="login-container" id="loginPage">
+    <div class="login-box">
+      <div class="login-header">
+        <div class="login-logo">Admin<span>Panel</span></div>
+        <p class="login-subtitle">Sign in to access your dashboard</p>
+      </div>
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" id="email" placeholder="Enter your email" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" id="password" placeholder="Enter your password" required
+            autocomplete="current-password" />
+        </div>
+        <div class="error-message" id="errorMessage">
+          Invalid email or password
+        </div>
+
+        <button id="googleCustomBtn" class="google-btn" type="button">
+          <img src="./assets/img/google.png" alt="Google" />
+          <span>Continue with Google</span>
+        </button>
+
+        <button type="submit" class="btn-login">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard Wrapper -->
+  <div class="dashboard-wrapper" id="dashboardWrapper">
+    <!-- Top Navigation -->
+    <div class="topnav">
+      <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+      <div class="logo">Admin<span>Panel</span></div>
+      <div class="profile">
+        <img src="./assets/img/icons/user.png" alt="User Avatar" class="profile-avatar" />
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-item active" onclick="showPage('dashboard')">
+        📊 Dashboard
+      </div>
+      <div class="sidebar-item" onclick="showPage('users')">👥 Users</div>
+      <div class="sidebar-item" onclick="showPage('orders')">📦 Orders</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Dashboard Page -->
+      <div id="dashboard" class="page active">
+        <div class="page-header">
+          <h1 class="page-title">Dashboard Overview</h1>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-label">Total Users</div>
+            <div class="stat-value">10</div>
+            <div class="stat-change">↑ 12.5% from last month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total Orders</div>
+            <div class="stat-value">8</div>
+            <div class="stat-change">↑ 8.3% from last month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total Revenue</div>
+            <div class="stat-value">₹100</div>
+            <div class="stat-change">↑ 15.2% from last month</div>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <h3 class="chart-title">Monthly Revenue</h3>
+          <canvas id="revenueChart"></canvas>
+        </div>
+
+        <div class="table-container">
+          <div class="table-header">
+            <h3 class="chart-title">Recent Orders</h3>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>User</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Users Page -->
+      <div id="users" class="page">
+        <div class="page-header">
+          <h1 class="page-title">Users Management</h1>
+        </div>
+
+        <div class="table-container">
+          <div class="table-header">
+            <h3 class="chart-title">All Users</h3>
+            <input type="text" class="search-box" placeholder="Search users..."
+              onkeyup="searchTable(this, 'usersTable')" />
+          </div>
+          <table id="usersTable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Plan</th>
+                <th>Status</th>
+                <th>Joined Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John Smith</td>
+                <td>john.smith@email.com</td>
+                <td>Premium</td>
+                <td>
+                  <span class="status-badge status-active">Active</span>
+                </td>
+                <td>Jan 15, 2025</td>
+              </tr>
+              <tr>
+                <td>Emma Wilson</td>
+                <td>emma.wilson@email.com</td>
+                <td>Basic</td>
+                <td>
+                  <span class="status-badge status-active">Active</span>
+                </td>
+                <td>Feb 3, 2025</td>
+              </tr>
+              <tr>
+                <td>Michael Brown</td>
+                <td>michael.b@email.com</td>
+                <td>Pro</td>
+                <td>
+                  <span class="status-badge status-active">Active</span>
+                </td>
+                <td>Mar 12, 2025</td>
+              </tr>
+              <tr>
+                <td>Sarah Davis</td>
+                <td>sarah.davis@email.com</td>
+                <td>Premium</td>
+                <td>
+                  <span class="status-badge status-inactive">Inactive</span>
+                </td>
+                <td>Apr 20, 2025</td>
+              </tr>
+              <tr>
+                <td>James Martinez</td>
+                <td>james.m@email.com</td>
+                <td>Basic</td>
+                <td>
+                  <span class="status-badge status-active">Active</span>
+                </td>
+                <td>May 8, 2025</td>
+              </tr>
+              <tr>
+                <td>Lisa Anderson</td>
+                <td>lisa.anderson@email.com</td>
+                <td>Pro</td>
+                <td>
+                  <span class="status-badge status-active">Active</span>
+                </td>
+                <td>Jun 14, 2025</td>
+              </tr>
+              <tr>
+                <td>David Taylor</td>
+                <td>david.t@email.com</td>
+                <td>Premium</td>
+                <td>
+                  <span class="status-badge status-active">Active</span>
+                </td>
+                <td>Jul 22, 2025</td>
+              </tr>
+              <tr>
+                <td>Jennifer Lee</td>
+                <td>jennifer.lee@email.com</td>
+                <td>Basic</td>
+                <td>
+                  <span class="status-badge status-inactive">Inactive</span>
+                </td>
+                <td>Aug 5, 2025</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Orders Page -->
+      <div id="orders" class="page">
+        <div class="page-header">
+          <h1 class="page-title">Orders Management</h1>
+        </div>
+
+        <div class="table-container">
+          <div class="table-header">
+            <h3 class="chart-title">All Orders</h3>
+            <input type="text" class="search-box" placeholder="Search orders..."
+              onkeyup="searchTable(this, 'ordersTable')" />
+          </div>
+          <table id="ordersTable">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>User</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#ORD-1047</td>
+                <td>John Smith</td>
+                <td>$245.00</td>
+                <td><span class="status-badge status-paid">Paid</span></td>
+                <td>Oct 7, 2025</td>
+              </tr>
+              <tr>
+                <td>#ORD-1046</td>
+                <td>Emma Wilson</td>
+                <td>$189.50</td>
+                <td>
+                  <span class="status-badge status-pending">Pending</span>
+                </td>
+                <td>Oct 7, 2025</td>
+              </tr>
+              <tr>
+                <td>#ORD-1045</td>
+                <td>Michael Brown</td>
+                <td>$425.00</td>
+                <td><span class="status-badge status-paid">Paid</span></td>
+                <td>Oct 6, 2025</td>
+              </tr>
+              <tr>
+                <td>#ORD-1044</td>
+                <td>Sarah Davis</td>
+                <td>$312.25</td>
+                <td><span class="status-badge status-paid">Paid</span></td>
+                <td>Oct 6, 2025</td>
+              </tr>
+              <tr>
+                <td>#ORD-1043</td>
+                <td>James Martinez</td>
+                <td>$156.80</td>
+                <td>
+                  <span class="status-badge status-pending">Pending</span>
+                </td>
+                <td>Oct 5, 2025</td>
+              </tr>
+              <tr>
+                <td>#ORD-1042</td>
+                <td>Lisa Anderson</td>
+                <td>$378.90</td>
+                <td><span class="status-badge status-paid">Paid</span></td>
+                <td>Oct 5, 2025</td>
+              </tr>
+              <tr>
+                <td>#ORD-1041</td>
+                <td>David Taylor</td>
+                <td>$524.50</td>
+                <td><span class="status-badge status-paid">Paid</span></td>
+                <td>Oct 4, 2025</td>
+              </tr>
+              <tr>
+                <td>#ORD-1040</td>
+                <td>Jennifer Lee</td>
+                <td>$201.75</td>
+                <td>
+                  <span class="status-badge status-pending">Pending</span>
+                </td>
+                <td>Oct 4, 2025</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./assets/js/admin.js"></script>
+</body>
+
+</html>
