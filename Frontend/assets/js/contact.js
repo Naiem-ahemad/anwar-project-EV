@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!token) return;
 
     try {
-      const res = await fetch("https://api.anwarhusen.dpdns.org/api/cart", {
+      const res = await fetch("https://anwar-project-ev.onrender.com/api/cart", {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
       
       if (name && email && subject && message) {
         try {
-          const res = await fetch("https://api.anwarhusen.dpdns.org/api/contact", {
+          const res = await fetch("https://anwar-project-ev.onrender.com/api/contact", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name, email, subject, message }),

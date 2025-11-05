@@ -29,7 +29,7 @@ async function handleLogin(event) {
 
   try {
     const res = await fetch(
-      "https://api.anwarhusen.dpdns.org/api/admin/login",
+      "https://anwar-project-ev.onrender.com/api/admin/login",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -73,7 +73,7 @@ googleBtn.addEventListener("click", () => {
   const errorMessage = document.getElementById("errorMessage");
   const CLIENT_ID =
     "357602028501-k3dgq742e43iv5uvdkjltmjh97tvogir.apps.googleusercontent.com";
-  const REDIRECT_URI = "https://api.anwarhusen.dpdns.org/api/oauth/callback"; // your server endpoint
+  const REDIRECT_URI = "https://anwar-project-ev.onrender.com/api/oauth/callback"; // your server endpoint
   const SCOPE = "openid email profile";
 
   // Listen for popup response

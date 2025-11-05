@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function fetchCartFromAPI() {
     try {
       const token = localStorage.getItem("gridcycleToken");
-      const res = await fetch("https://api.anwarhusen.dpdns.org/api/cart", {
+      const res = await fetch("https://anwar-project-ev.onrender.com/api/cart", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     try {
-      const res = await fetch("https://api.anwarhusen.dpdns.org/api/cart", {
+      const res = await fetch("https://anwar-project-ev.onrender.com/api/cart", {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       const res = await fetch(
-        `https://api.anwarhusen.dpdns.org/api/cart/${item.id}`,
+        `https://anwar-project-ev.onrender.com/api/cart/${item.id}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },
@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       // Just for example: mark all items as paid
       for (const item of cart) {
-        await fetch(`https://api.anwarhusen.dpdns.org/api/cart/checkout/${item.id}`, {
+        await fetch(`https://anwar-project-ev.onrender.com/api/cart/checkout/${item.id}`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,

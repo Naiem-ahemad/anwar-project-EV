@@ -47,11 +47,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const signupForm = document.getElementById("signupForm");
   const signupErrorMessage = document.getElementById("signupErrorMessage");
 
-  const API_BASE = "https://api.anwarhusen.dpdns.org/api";
+  const API_BASE = "https://anwar-project-ev.onrender.com/api";
   const googleLoginHandler = () => {
     const CLIENT_ID =
       "357602028501-k3dgq742e43iv5uvdkjltmjh97tvogir.apps.googleusercontent.com";
-    const REDIRECT_URI = "https://api.anwarhusen.dpdns.org/api/oauth/callback";
+    const REDIRECT_URI = "https://anwar-project-ev.onrender.com/api/oauth/callback";
     const SCOPE = "openid email profile";
 
     const handleMessage = (event) => {
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 window.addEventListener("load", function () {
-  const API_BASE = "https://api.anwarhusen.dpdns.org/api";
+  const API_BASE = "https://anwar-project-ev.onrender.com/api";
 
   // --- JWT Parser ---
   function parseJwt(token) {

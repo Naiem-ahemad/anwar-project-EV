@@ -514,7 +514,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         try {
-          const res = await fetch("https://api.anwarhusen.dpdns.org/api/cart", {
+          const res = await fetch("https://anwar-project-ev.onrender.com/api/cart", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -764,7 +764,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!token) return;
 
     try {
-      const res = await fetch("https://api.anwarhusen.dpdns.org/api/cart", {
+      const res = await fetch("https://anwar-project-ev.onrender.com/api/cart", {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
